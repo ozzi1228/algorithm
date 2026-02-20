@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.StringTokenizer;
 
-public class BOJ2797_recursive {
+public class BOJ2798_재귀사용 {
 
   static int N, M;
   static Integer[] arr;
@@ -28,6 +28,7 @@ public class BOJ2797_recursive {
     }
 
     Arrays.sort(arr, Collections.reverseOrder());
+//    System.out.println(Arrays.toString(arr));
 
     getSum(0, 0);
     System.out.println(max);
@@ -43,7 +44,7 @@ public class BOJ2797_recursive {
     }
 
     // 세 개 다 채우면 최댓값 갱신해주고 한 개 전으로 돌려보내주고 리턴
-    if(cnt == 3) {
+    if (cnt == 3) {
       max = Math.max(sum, max);
       return;
     }
@@ -51,11 +52,15 @@ public class BOJ2797_recursive {
     /// 로직
     // 하나를 고른다
     for (int i = 0; i < N; i++) {
-      if (!visited[i]) {
-        visited[i] = true;
-        getSum(cnt + 1, sum + arr[i]);
-        visited[i] = false;
+
+      if (visited[i]) {
+        continue;
       }
+
+      visited[i] = true;
+      getSum(cnt + 1, sum + arr[i]);
+      visited[i] = false;
+
     }
   }
 
